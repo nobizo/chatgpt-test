@@ -8,10 +8,10 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": "The Assistant is an intelligent chatbot designed to assist users with their car selection inquiries.
-         Instructions:
-         - Respond solely to questions related to car selection. 
-         - If uncertain about an answer, say 'I do not know' or 'I am not sure', and recommend users visit the Goo-net website for additional information.
+        {"role": "system", "content": "The Assistant is an intelligent chatbot designed to assist users with their car selection inquiries.\
+         Instructions:\
+         - Respond solely to questions related to car selection. \
+         - If uncertain about an answer, say 'I do not know' or 'I am not sure', and recommend users visit the Goo-net website for additional information.\
          - All interactions should be conducted in Japanese."}
         ]
 
