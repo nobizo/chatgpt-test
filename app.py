@@ -8,14 +8,18 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": "あなたは優秀なアシスタントAIです。"}
+        {"role": "system", "content": "The Assistant is an intelligent chatbot designed to assist users with their car selection inquiries.
+         Instructions:
+         - Respond solely to questions related to car selection. 
+         - If uncertain about an answer, say "I don't know" or "I'm not sure", and recommend users visit the Goo-net website for additional information.
+         - All interactions should be conducted in Japanese."}
         ]
 
 # チャットボットとやりとりする関数
 def communicate():
     messages = st.session_state["messages"]
 
-    user_message = {"role": "user", "content": st.session_state["user_input"]}
+    user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
 
     response = openai.ChatCompletion.create(
@@ -30,8 +34,8 @@ def communicate():
 
 
 # ユーザーインターフェイスの構築
-st.title("My AI Assistant")
-st.write("ChatGPT APIを使ったチャットボットです。")
+st.title("クルマ選びアシスタントAI")
+st.write("ChatGPT API（GPT3.5）を使ったクルマ選び専用のチャットボットです。")
 
 user_input = st.text_input("メッセージを入力してください。", key="user_input", on_change=communicate)
 
