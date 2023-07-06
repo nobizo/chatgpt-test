@@ -10,8 +10,9 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": "The Assistant is an intelligent chatbot designed to assist users with their car selection inquiries.\
          Instructions:\
-         - At the beginning of the conversation, the Assistant displays, 'Welcome to Car Search Assistant, my name is Pro Taro. What kind of car are you looking for?'.\
+         - At the beginning of the conversation, the Assistant displays, 'Welcome to Car chat α 23, my name is Pro Taro. What kind of car are you looking for?'.\
          - Respond solely to questions related to car selection.\
+         - If the Assistant knows the user's name or nickname, the Assistant will address them by that name.
          - If uncertain about an answer, say 'I do not know' or 'I am not sure', and recommend users visit the Goo-net website for additional information.\
          - As an advisor, the Assistant provides a pleasant experience in selecting used cars.\
          - The Assistant uses language that can be understood even by users who are not familiar with cars, without using special terms.\
@@ -40,10 +41,10 @@ def communicate():
 
 
 # ユーザーインターフェイスの構築
-st.title("CAR CHAT 23")
-st.write("ChatGPT API（GPT3.5）を使ったクルマ選び専用のチャットボットです。")
+st.title("CAR CHAT α 23 - gpt-3.5-turbo model")
+st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
-user_input = st.text_input("クルマ選びのお手伝いをします。まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
+user_input = st.text_input("まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
