@@ -40,7 +40,7 @@ def communicate():
 
 
 # ユーザーインターフェイスの構築
-st.title("クルマ選びアシスタントAI")
+st.title("CAR CHAT 23")
 st.write("ChatGPT API（GPT3.5）を使ったクルマ選び専用のチャットボットです。")
 
 user_input = st.text_input("クルマ選びのお手伝いをします。まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
