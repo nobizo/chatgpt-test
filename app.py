@@ -1,4 +1,3 @@
-
 import streamlit as st
 import openai
 
@@ -29,7 +28,7 @@ def communicate():
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
 
-    model = st.sidebar.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
+    model = st.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
 
     if model == "GPT-3.5":
         response = openai.ChatCompletion.create(
@@ -49,7 +48,7 @@ def communicate():
     st.session_state["user_input"] = ""  # 入力欄を消去
 
 # ユーザーインターフェイスの構築
-st.title("CAR CHAT α 23 powerd by gpt4")
+st.title("CAR CHAT α 23")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
 user_input = st.text_input("まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
@@ -63,3 +62,7 @@ if st.session_state["messages"]:
             speaker="🤖"
 
         st.write(speaker + ": " + message["content"])
+
+# モデルの選択
+st.sidebar.markdown("**モデルの選択**")
+model = st.sidebar.selectbox("モデル", ["GPT-3.5", "GPT-4"])
