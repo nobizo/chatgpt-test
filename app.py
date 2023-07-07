@@ -38,7 +38,6 @@ def communicate():
     elif model == "GPT-4":
         response = openai.ChatCompletion.create(
             model="gpt-4",
-            engine="davinci-002",
             messages=messages
         )  
 
