@@ -28,7 +28,7 @@ def communicate():
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
 
-    model = st.session_state["model"]
+    model = st.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
 
     if model == "GPT-3.5":
         response = openai.ChatCompletion.create(
@@ -38,6 +38,7 @@ def communicate():
     elif model == "GPT-4":
         response = openai.ChatCompletion.create(
             model="gpt-4",
+            engine="davinci-002",
             messages=messages
         )  
 
@@ -48,17 +49,9 @@ def communicate():
 
 # ユーザーインターフェイスの構築
 st.title("CAR CHAT α 23")
-
-# モデルの選択
-model = st.selectbox("モデルの選択", ["GPT-3.5", "GPT-4"], key="model")
-
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
-user_input = st.text_input("まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input")
-
-# ボタンを押すとcommunicate()が呼ばれます。
-if st.button('送信'):
-    communicate()
+user_input = st.text_input("まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
 
 if st.session_state["messages"]:
     messages = st.session_state["messages"]
@@ -69,3 +62,7 @@ if st.session_state["messages"]:
             speaker="🤖"
 
         st.write(speaker + ": " + message["content"])
+
+# モデルの選択
+st.sidebar.markdown("**モデルの選択**")
+model = st.sidebar.selectbox("モデル", ["GPT-3.5", "GPT-4"])
