@@ -28,7 +28,7 @@ def communicate():
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
 
-    model = st.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
+    st.write(model + "が選ばれています。")
 
     if model == "GPT-3.5":
         response = openai.ChatCompletion.create(
