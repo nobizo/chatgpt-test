@@ -29,19 +29,27 @@ def communicate():
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=messages
-    )  
+    model = st.sidebar.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
+
+    if model == "GPT-3.5":
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=messages
+        )  
+    elif model == "GPT-4":
+        response = openai.ChatCompletion.create(
+            model="gpt-4",
+            engine="davinci-002",
+            messages=messages
+        )  
 
     bot_message = response["choices"][0]["message"]
     messages.append(bot_message)
 
     st.session_state["user_input"] = ""  # 入力欄を消去
 
-
 # ユーザーインターフェイスの構築
-st.title("CAR CHAT α 23 - gpt-3.5-turbo model")
+st.title("CAR CHAT α 23 powerd by gpt4")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
 user_input = st.text_input("まずはあなたのニックネームと何をアドバイスしてほしいか教えてください。", key="user_input", on_change=communicate)
