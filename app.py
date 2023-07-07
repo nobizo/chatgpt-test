@@ -62,3 +62,6 @@ if st.session_state["messages"]:
             speaker="🤖"
 
         st.write(speaker + ": " + message["content"])
+
+# モデルの選択
+st.selectbox("Choose a model", ["GPT-3.5", "GPT-4"])
