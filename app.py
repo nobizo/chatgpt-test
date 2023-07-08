@@ -6,7 +6,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 # モデルの選択
 st.sidebar.markdown("**モデルの選択**")
-model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4.0-turbo"])
+model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4.0"])
 
 # ユーザーインターフェイスの構築
 st.write(f"{model}が選ばれています。")
