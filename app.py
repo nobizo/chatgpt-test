@@ -4,8 +4,12 @@ import openai
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
+# モデルの選択
+st.sidebar.markdown("**モデルの選択**")
+model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4.0-turbo"])
+
 # ユーザーインターフェイスの構築
-st.write(model + "が選ばれています。")
+st.write(f"{model}が選ばれています。")
 st.title("CAR CHAT α 23")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
@@ -25,16 +29,6 @@ if "messages" not in st.session_state:
          - Information such as the manufacturer, model name, body type of the car, budget, car form, face design, safety performance, whether it's an EV or fueled, etc., are useful in narrowing down the choices.\
          - All interactions should be conducted in Japanese."}
         ]
-if model == "GPT-3.5":
-   response = openai.ChatCompletion.create(
-   model="gpt-3.5-turbo",
-   messages=messages
-   )  
-elif model == "GPT-4":
-   response = openai.ChatCompletion.create(
-   model="gpt-4",
-   messages=messages
-   )
 
 # チャットボットとやりとりする関数
 def communicate():
@@ -42,7 +36,12 @@ def communicate():
 
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
-
+    
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages
+    )
+    
     bot_message = response["choices"][0]["message"]
     messages.append(bot_message)
 
@@ -60,7 +59,3 @@ if st.session_state["messages"]:
             speaker="🤖"
 
         st.write(speaker + ": " + message["content"])
-
-# モデルの選択
-st.sidebar.markdown("**モデルの選択**")
-model = st.sidebar.selectbox("モデル", ["GPT-3.5", "GPT-4"])
