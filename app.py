@@ -1,5 +1,11 @@
 import streamlit as st
 import openai
+from gtts import gTTS
+
+text = "こんにちは!Car Chat alpha23へようこそ！"
+
+tts = gTTS(text, lang='ja')
+tts.save('welcome.mp3')
 
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
@@ -12,6 +18,7 @@ model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4"])
 st.write(f"{model}が選ばれています。")
 st.title("CAR CHAT α 23")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
+st.audio('welcome.mp3')
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
