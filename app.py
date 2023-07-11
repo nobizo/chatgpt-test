@@ -19,7 +19,7 @@ st.write("わたしはあなたのライフスタイルにあったクルマ探�
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": st.secret.AppSettings.chatbot_setting}
+        {"role": "system", "content": st.secrets.AppSettings.chatbot_setting}
 #    st.session_state["messages"] = [
 #        {"role": "system", "content": "The Assistant is an intelligent chatbot designed to assist users with their car selection inquiries.\
 #         Instructions:\
