@@ -11,7 +11,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 # Streamlit Community Cloudの「Secrets」から古郡 API keyを取得
 my_api_key = st.secrets.GetCarListAPI.furu_api_key
 headers = {'x-api-key': my_api_key}
-response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/car_list?keyword1="可愛い"', headers=headers)
+response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/car_list?keyword1="かっこいい"', headers=headers)
 
 if response.status_code == 200:
     st.write(response.content)
