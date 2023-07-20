@@ -14,9 +14,9 @@ headers = {'x-api-key': my_api_key}
 response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/keyword_list', headers=headers)
 
 if response.status_code == 200:
-    print(response.content)
+    st.write(response.content)
 else:
-    print(response.status_code)
+    st.write(response.status_code)
 
 # モデルの選択
 st.sidebar.markdown("**モデルの選択**")
