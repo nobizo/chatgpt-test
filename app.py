@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import openai
+import json
 from gtts import gTTS
 
 text = "こんにちは!Car Chat alpha23へようこそ！"
@@ -8,15 +9,22 @@ text = "こんにちは!Car Chat alpha23へようこそ！"
 # Streamlit Community Cloudの「Secrets」からOpenAI API keyを取得
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
-# Streamlit Community Cloudの「Secrets」から古郡 API keyを取得
+# Streamlit Community Cloudの「Secrets」に古郡 API keyを設定して取得
 my_api_key = st.secrets.GetCarListAPI.furu_api_key
-
+# HTTPヘッダーに古郡API Keyをセット
 headers = {'x-api-key': my_api_key, 'Content-Type': 'application/json; charset=utf-8'}
 
 response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/keyword_list', headers=headers)
+# JSON データを文字列に変換する
+json_data = json.loads(response.content.decode('utf-8'))
+
+# 文字列を表示する
+# st.write(json_data)
+
 
 if response.status_code == 200:
-    st.write(response.content)
+#    st.write(response.content)
+     st.write(json_data)
 else:
     st.write(response.status_code)
 
