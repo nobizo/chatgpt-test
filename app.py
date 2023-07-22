@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import openai
-import json
+# import json
 from gtts import gTTS
 
 text = "こんにちは!Car Chat alpha23へようこそ！"
@@ -10,19 +10,19 @@ text = "こんにちは!Car Chat alpha23へようこそ！"
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 
 # Streamlit Community Cloudの「Secrets」に古郡 API keyを設定して取得
-my_api_key = st.secrets.GetCarListAPI.furu_api_key
+# my_api_key = st.secrets.GetCarListAPI.furu_api_key
 # HTTPヘッダーに古郡API Keyをセット
-headers = {'x-api-key': my_api_key, 'Content-Type': 'application/json; charset=utf-8'}
+# headers = {'x-api-key': my_api_key, 'Content-Type': 'application/json; charset=utf-8'}
 
-response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/keyword_list', headers=headers)
+# response = requests.get('https://21q618uhje.execute-api.ap-northeast-1.amazonaws.com/prod/keyword_list', headers=headers)
 # JSON データを文字列に変換する
-json_data = json.loads(response.content.decode('utf-8'))
+# json_data = json.loads(response.content.decode('utf-8'))
 
 # 文字列表示
-if response.status_code == 200:
-     st.write(json_data)
-else:
-    st.write(response.status_code)
+# if response.status_code == 200:
+#     st.write(json_data)
+# else:
+#    st.write(response.status_code)
 
 # モデルの選択
 st.sidebar.markdown("**モデルの選択**")
@@ -31,6 +31,7 @@ model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4"])
 # ユーザーインターフェイスの構築
 st.write(f"{model}が選ばれています。")
 st.title("CAR CHAT α 23")
+st.image("IMG_4204.JPG")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
 # st.session_stateを使いメッセージのやりとりを保存
