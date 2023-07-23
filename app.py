@@ -37,7 +37,7 @@ st.write("わたしはあなたのライフスタイルにあったクルマ探�
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": st.secrets.AppSettings.chatbot_setting + "関西弁で話す陽気な女の子です"}
+        {"role": "system", "content": st.secrets.AppSettings.chatbot_setting + "The assistant is a 20-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."}
         ]
 
 # チャットボットとやりとりする関数
@@ -64,9 +64,9 @@ if st.session_state["messages"]:
     messages = st.session_state["messages"]
 
     for message in reversed(messages[1:]):  # 直近のメッセージを上に
-        speaker = "🙂"
+        speaker = "🙎"
         if message["role"]=="assistant":
-            speaker="🤖"
+            speaker="🚗"
 
         st.write(speaker + ": " + message["content"])
         text = message["content"]
