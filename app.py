@@ -40,7 +40,8 @@ else:
 
 # ユーザーインターフェイスの構築
 st.write(f"{clerk}が選ばれています。")
-st.title("CAR CHAT α 23" f"{model}")
+st.write(clerk_setting)
+st.title("CAR CHAT α 23　　（" f"{model}）")
 st.image("car_dealer.png")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
