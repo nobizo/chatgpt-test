@@ -40,20 +40,19 @@ else:
 
 # ユーザーインターフェイスの構築
 st.write(f"{clerk}が選ばれています。")
-st.write(clerk_setting)
-st.title("CAR CHAT α 23　　（" f"{model}）")
+st.title("CAR CHAT α 23（" f"{model}）")
 st.image("car_dealer.png")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
-        {"role": "system", "content": st.secrets.AppSettings.chatbot_setting + clerk_setting}
+        {"role": "system", "content": st.secrets.AppSettings.chatbot_setting}
         ]
 
 # チャットボットとやりとりする関数
 def communicate():
-    messages = st.session_state["messages"]
+    messages = st.session_state["messages" + clerk_setting]
 
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
