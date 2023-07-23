@@ -30,9 +30,9 @@ model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4"])
 # アシスタントの選択
 st.sidebar.markdown("**店員の選択**")
 clerk = st.sidebar.selectbox("店員", ["さゆり（23歳）", "けんじ（35歳）","こうた（45歳）" ])
-if clerk = "さゆり（23歳）":
+if clerk == "さゆり（23歳）":
     clerk_setting = "The assistant is a 23-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."
-else if clerk = "けんじ（35歳）":
+else if clerk == "けんじ（35歳）":
     clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji."
 else:
     clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
