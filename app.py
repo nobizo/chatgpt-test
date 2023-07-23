@@ -39,8 +39,8 @@ else:
         clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
 
 # ユーザーインターフェイスの構築
-st.write(f"{model}が選ばれています。")
-st.title("CAR CHAT α 23")
+st.write(f"{clerk}が選ばれています。")
+st.title("CAR CHAT α 23" f"{model}")
 st.image("car_dealer.png")
 st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
