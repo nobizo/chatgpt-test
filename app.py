@@ -42,7 +42,7 @@ else:
 st.write(f"{clerk}が選ばれています。")
 st.title("CAR CHAT α 23（" f"{model}）")
 st.image("car_dealer.png")
-st.write("わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
+st.write(f"{clerk}です。わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
 
 # st.session_stateを使いメッセージのやりとりを保存
 if "messages" not in st.session_state:
