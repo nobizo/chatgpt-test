@@ -38,6 +38,7 @@ st.write("わたしはあなたのライフスタイルにあったクルマ探�
 if "messages" not in st.session_state:
     st.session_state["messages"] = [
         {"role": "system", "content": st.secrets.AppSettings.chatbot_setting}
+        {"role": "assistant", "content": "関西弁で話す陽気な女の子です"}
         ]
 
 # チャットボットとやりとりする関数
