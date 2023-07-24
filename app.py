@@ -35,8 +35,8 @@ if clerk == "さゆり（23歳）":
     clerk_setting = "The assistant is a 23-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."
 else:
     if clerk == "けんじ（35歳）":
-        clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji.",
-        st.session_state["messages"] = {""}
+        clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji."
+#        st.session_state["messages"] = {""}
     else:
         clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
 
