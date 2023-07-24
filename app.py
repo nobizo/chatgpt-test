@@ -27,16 +27,27 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 # モデルの選択
 st.sidebar.markdown("**モデルの選択**")
 model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4"])
+
 # アシスタントの選択
 st.sidebar.markdown("**店員の選択**")
 clerk = st.sidebar.selectbox("店員", ["さゆり（23歳）", "けんじ（35歳）","こうた（45歳）" ])
-if clerk == "さゆり（23歳）":
-    clerk_setting = "The assistant is a 23-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."
-else:
-    if clerk == "けんじ（35歳）":
+
+# clerkの値が前回から変更されたかどうか確認
+if "previous_clerk" not in st.session_state or st.session_state["previous_clerk"] != clerk:
+    # clerkの設定を更新
+    if clerk == "さゆり（23歳）":
+        clerk_setting = "The assistant is a 23-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."
+    elif clerk == "けんじ（35歳）":
         clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji."
     else:
         clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
+    
+    # systemのroleにclerk_settingの内容をappend
+    if "messages" in st.session_state:
+        st.session_state["messages"].append({"role": "system", "content": clerk_setting})
+    
+    # 現在のclerkの値をprevious_clerkとして保存
+    st.session_state["previous_clerk"] = clerk
 
 # ユーザーインターフェイスの構築
 # st.write(f"{clerk}が選ばれています。")
