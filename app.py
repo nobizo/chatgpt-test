@@ -35,7 +35,8 @@ if clerk == "さゆり（23歳）":
     clerk_setting = "The assistant is a 23-year-old woman who speaks Kansai-ben, a dialect of Japanese. Her name is Sayuri."
 else:
     if clerk == "けんじ（35歳）":
-        clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji."
+        clerk_setting = "The assistant is a 35-year-old man who speaks kyoto-ben, a dialect of Japanese. His name is Kenji.",
+        st.session_state = ""
     else:
         clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
 
@@ -59,7 +60,7 @@ def communicate():
     
     response = openai.ChatCompletion.create(
         model=model,
-        messages=messages + clerk_setting
+        messages=messages
     )
     
     bot_message = response["choices"][0]["message"]
