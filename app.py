@@ -11,7 +11,12 @@ def get_clerk_setting(clerk):
     return clerk_settings.get(clerk)
 
 def communicate():
-    messages = st.session_state["messages"]
+    messages = st.session_state.get("messages", [])
+    
+    # Add system message based on clerk's setting
+    if not messages:
+        messages.append({"role": "system", "content": get_clerk_setting(clerk)})
+
     user_message = {"role": "user", "content": st.session_state["user_input"]}    
     messages.append(user_message)
     
@@ -23,6 +28,21 @@ def communicate():
     bot_message = response["choices"][0]["message"]
     messages.append(bot_message)
     st.session_state["user_input"] = ""
+    st.session_state["messages"] = messages  # Update the session state with modified messages
+
+#def communicate():
+#    messages = st.session_state["messages"]
+#    user_message = {"role": "user", "content": st.session_state["user_input"]}    
+#    messages.append(user_message)
+#    
+#    response = openai.ChatCompletion.create(
+#        model=model,
+#        messages=messages
+#    )
+#    
+#    bot_message = response["choices"][0]["message"]
+#    messages.append(bot_message)
+#    st.session_state["user_input"] = ""
 
 # Set API keys
 openai.api_key = st.secrets.OpenAIAPI.openai_api_key
