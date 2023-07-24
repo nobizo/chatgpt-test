@@ -27,6 +27,7 @@ openai.api_key = st.secrets.OpenAIAPI.openai_api_key
 # モデルの選択
 st.sidebar.markdown("**モデルの選択**")
 model = st.sidebar.selectbox("モデル", ["gpt-3.5-turbo", "gpt-4"])
+
 # アシスタントの選択
 st.sidebar.markdown("**店員の選択**")
 clerk = st.sidebar.selectbox("店員", ["さゆり（23歳）", "けんじ（35歳）","こうた（45歳）" ])
@@ -39,7 +40,6 @@ else:
         clerk_setting = "The assistant is a 45-year-old man who speaks hyojungo, a dialect of Japanese. His name is Kouta."
 
 # ユーザーインターフェイスの構築
-st.write(f"{clerk}が選ばれています。")
 st.title("CAR CHAT α 23（" f"{model}）")
 st.image("car_dealer.png")
 st.write(f"{clerk}です。わたしはあなたのライフスタイルにあったクルマ探しのお手伝いをします。")
@@ -59,7 +59,7 @@ def communicate():
     
     response = openai.ChatCompletion.create(
         model=model,
-        messages=messages
+        messages=messages + clerk_setting
     )
     
     bot_message = response["choices"][0]["message"]
